@@ -32,6 +32,7 @@ class PandasAgent :
         sys.stdout = captured_output = StringIO()
         
         response = pandas_ai.run(data_frame = uploaded_file_content, prompt=query)
+        updated_df = pandas_ai.df  # Get the updated DataFrame from the pandas_ai instance
         fig = plt.gcf()
         if fig.get_axes():
                     # Adjust the figure size
@@ -45,7 +46,7 @@ class PandasAgent :
             st.image(buf, caption="Generated Plot")
         
         sys.stdout = old_stdout
-        return response, captured_output
+        return response, captured_output, updated_df
 
     def process_agent_thoughts(self,captured_output):
         thoughts = captured_output.getvalue()
