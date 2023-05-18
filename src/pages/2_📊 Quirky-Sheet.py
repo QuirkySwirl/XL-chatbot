@@ -71,7 +71,7 @@ else:
                 csv_agent.display_agent_thoughts(cleaned_thoughts)
                 csv_agent.update_chat_history(query, result)
                 csv_agent.display_chat_history()
-             st.session_state.df = csv_agent.df  # Update the session state with the modified DataFrame
-             st.subheader("Current dataframe:")
-             st.write(st.session_state.df)  # Display the updated DataFrame
+                st.session_state.df = csv_agent.df  # Update the session state with the modified DataFrame
+                st.subheader("Current dataframe:")
+                st.write(st.session_state.df)  # Display the updated DataFrame
 
