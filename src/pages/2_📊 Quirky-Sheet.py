@@ -66,11 +66,10 @@ else:
             if reset_chat_button:
                 st.session_state["chat_history"] = []
         if submitted_query:
-            result, captured_output = csv_agent.get_agent_response(df, query)
+            result, captured_output, updated_df = csv_agent.get_agent_response(st.session_state.df, query)
             cleaned_thoughts = csv_agent.process_agent_thoughts(captured_output)
             csv_agent.display_agent_thoughts(cleaned_thoughts)
             csv_agent.update_chat_history(query, result)
             csv_agent.display_chat_history()
-        if st.session_state.df is not None:
-            st.subheader("Current dataframe:")
+            st.session_state.df = updated_df  # Update the session state with the modified DataFrame            st.subheader("Current dataframe:")
             st.write(st.session_state.df)
