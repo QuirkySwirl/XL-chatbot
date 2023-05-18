@@ -65,13 +65,13 @@ else:
             reset_chat_button = st.form_submit_button("Reset Chat")
             if reset_chat_button:
                 st.session_state["chat_history"] = []
-      if submitted_query:
-         result, captured_output = csv_agent.get_agent_response(df, query)
-         cleaned_thoughts = csv_agent.process_agent_thoughts(captured_output)
-         csv_agent.display_agent_thoughts(cleaned_thoughts)
-          csv_agent.update_chat_history(query, result)
-          csv_agent.display_chat_history()
-          st.session_state.df = csv_agent.df  # Update the session state with the modified DataFrame
-          st.subheader("Current dataframe:")
-          st.write(st.session_state.df)  # Display the updated DataFrame
+            if submitted_query:
+                result, captured_output = csv_agent.get_agent_response(df, query)
+                cleaned_thoughts = csv_agent.process_agent_thoughts(captured_output)
+                csv_agent.display_agent_thoughts(cleaned_thoughts)
+                csv_agent.update_chat_history(query, result)
+                csv_agent.display_chat_history()
+             st.session_state.df = csv_agent.df  # Update the session state with the modified DataFrame
+             st.subheader("Current dataframe:")
+             st.write(st.session_state.df)  # Display the updated DataFrame
 
