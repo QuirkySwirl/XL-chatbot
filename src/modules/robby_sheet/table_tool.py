@@ -26,27 +26,27 @@ class PandasAgent :
         pass
 
     def get_agent_response(self, uploaded_file_content, query):
-        llm = OpenAI()
-        pandas_ai = PandasAI(llm, verbose=True)
-        old_stdout = sys.stdout
-        sys.stdout = captured_output = StringIO()
-        
-        response = pandas_ai.run(data_frame = uploaded_file_content, prompt=query)
-        updated_df = pandas_ai.df  # Get the updated DataFrame from the pandas_ai instance
-        fig = plt.gcf()
-        if fig.get_axes():
-                    # Adjust the figure size
-            fig.set_size_inches(12, 6)
+    llm = OpenAI()
+    pandas_ai = PandasAI(llm, verbose=True)
+    old_stdout = sys.stdout
+    sys.stdout = captured_output = StringIO()
+    
+    response = pandas_ai.run(data_frame = uploaded_file_content, prompt=query)
+    updated_df = llm.df  # Get the updated DataFrame from the llm instance
+    fig = plt.gcf()
+    if fig.get_axes():
+                # Adjust the figure size
+        fig.set_size_inches(12, 6)
 
-            # Adjust the layout tightness
-            plt.tight_layout()
-            buf = BytesIO()
-            fig.savefig(buf, format="png")
-            buf.seek(0)
-            st.image(buf, caption="Generated Plot")
-        
-        sys.stdout = old_stdout
-        return response, captured_output, updated_df
+        # Adjust the layout tightness
+        plt.tight_layout()
+        buf = BytesIO()
+        fig.savefig(buf, format="png")
+        buf.seek(0)
+        st.image(buf, caption="Generated Plot")
+    
+    sys.stdout = old_stdout
+    return response, captured_output, updated_df  # Return the updated DataFrame
 
     def process_agent_thoughts(self,captured_output):
         thoughts = captured_output.getvalue()
