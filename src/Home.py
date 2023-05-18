@@ -8,11 +8,9 @@ st.set_page_config(layout="wide", page_icon="💬", page_title="Quirky | Chat-Bo
 #Contact
 with st.sidebar.expander("📬 Contact"):
 
-    st.write("**LinkedIn:** "
-"[@kartik](https://www.linkedin.com/in/kartikiyer/)")
 
     st.write("**Twitter:** [@quirkyswirl](https://twitter.com/QuirkySwirl)")
-    st.write("**Mail** : kartik@iyer.dev")
+    st.write("**Mail** : info@iyer.dev")
     st.write("**Demo ONLY**")
 
     st.write("**Original Source:**",
